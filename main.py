@@ -1,36 +1,17 @@
-def encrypt(text,s):
-result = ""
-   # transverse the plain text
-   for i in range(len(text)):
-      char = text[i]
-      # Encrypt uppercase characters in plain text
-      
-      if (char.isupper()):
-         result += chr((ord(char) + s-65) % 26 + 65)
-      # Encrypt lowercase characters in plain text
-      else:
-         result += chr((ord(char) + s - 97) % 26 + 97)
-      return result
-#check the above function
-text = "CEASER CIPHER DEMO"
-s = 4
+alphabets = 'abcdefghijklmnoqprstuvwxyz'
 
-print "Plain Text : " + text
-print "Shift pattern : " + str(s)
-print "Cipher: " + encrypt(text,s)
+string_input = input("Enter your message: ")
+key = int(input("Enter your key: "))
 
-message = 'GIEWIVrGMTLIVrHIQS' #encrypted message
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+n = len(string_input)
 
-for key in range(len(LETTERS)):
-   translated = ''
-   for symbol in message:
-      if symbol in LETTERS:
-         num = LETTERS.find(symbol)
-         num = num - key
-         if num < 0:
-            num = num + len(LETTERS)
-         translated = translated + LETTERS[num]
-      else:
-         translated = translated + symbol
-print('Hacking key #%s: %s' % (key, translated))
+string_output = ""
+
+for i in range (n):
+  character = string_input[i]
+  location = alphabets.find(character)
+  print(character, location)
+  new_location = (location + key) % 26
+  string_output += alphabets[new_location]
+
+print(string_output)
